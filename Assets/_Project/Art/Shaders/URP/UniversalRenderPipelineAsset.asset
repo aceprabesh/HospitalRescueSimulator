@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+UniversalRenderPipelineAsset:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: UniversalRenderPipelineAsset
+  m_ShortName: URP Asset
+  m_Description: Hospital Rescue Simulator - URP Configuration
+  m_ApplicableTargets: 16
+  m_ShadowType: 1
+  m_ShadowResolutionDirectional: 2048
+  m_ShadowResolutionOther: 1024
+  m_ShadowCascadeCount: 2
+  m_EnableContactShadows: 1
+  m_EnableScreenSpaceShadows: 0
+  m_UseRenderingLayers: 1
+  m_SoftShadowsEnabled: 1
+  m_SoftShadowQuality: 2
+  m_ReflectionsSource: 0
+  m_ReflectionBounces: 2
+  m_ReflectionProbeInterpolate: 1
+  m_ReflectionBoxFolderSync: 1
+  m_AdditionalLightsShadowResolutionTierLow: 0
+  m_AdditionalLightsShadowResolutionTierMedium: 1
+  m_AdditionalLightsShadowResolutionTierHigh: 2
+  m_AdditionalLightsCookieResolution: 2048
+  m_UseScreenSpaceOcclusion: 1
