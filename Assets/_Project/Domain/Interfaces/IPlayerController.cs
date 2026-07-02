@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace HospitalRescue.Domain.Interfaces
 {
     /// <summary>

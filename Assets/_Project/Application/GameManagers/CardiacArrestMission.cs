@@ -38,15 +38,15 @@ namespace HospitalRescue.Application.GameManagers
             xpReward = 500;
             unlockAchievements = new[] { "ACH_FIRST_LIFE_SAVED" };
             
-            objectives = new Objective[]
+            objectives = new ObjectiveData[]
             {
-                new Objective { objectiveId = "reach_patient", description = "Reach the patient in Waiting Room A" },
-                new Objective { objectiveId = "assess_vitals", description = "Assess patient vitals" },
-                new Objective { objectiveId = "start_cpr", description = "Begin CPR compressions" },
-                new Objective { objectiveId = "apply_defibrillator", description = "Apply defibrillator and shock" },
-                new Objective { objectiveId = "administer_oxygen", description = "Administer oxygen therapy" },
-                new Objective { objectiveId = "stabilize_patient", description = "Stabilize patient vitals" },
-                new Objective { objectiveId = "prepare_transport", description = "Prepare patient for transport to ICU" }
+                new ObjectiveData { objectiveId = "reach_patient", description = "Reach the patient in Waiting Room A" },
+                new ObjectiveData { objectiveId = "assess_vitals", description = "Assess patient vitals" },
+                new ObjectiveData { objectiveId = "start_cpr", description = "Begin CPR compressions" },
+                new ObjectiveData { objectiveId = "apply_defibrillator", description = "Apply defibrillator and shock" },
+                new ObjectiveData { objectiveId = "administer_oxygen", description = "Administer oxygen therapy" },
+                new ObjectiveData { objectiveId = "stabilize_patient", description = "Stabilize patient vitals" },
+                new ObjectiveData { objectiveId = "prepare_transport", description = "Prepare patient for transport to ICU" }
             };
         }
     }

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using HospitalRescue.Domain.Interfaces;
 
 namespace HospitalRescue.Application.GameManagers

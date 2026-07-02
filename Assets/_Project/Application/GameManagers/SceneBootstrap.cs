@@ -4,6 +4,7 @@ using HospitalRescue.Application.Controllers.Player;
 using HospitalRescue.Application.Presentation.Input;
 using HospitalRescue.Domain.ScriptableObjects;
 using HospitalRescue.Domain.Interfaces;
+using HospitalRescue.Application.Presentation.UI.Components;
 
 namespace HospitalRescue.Application.GameManagers
 {

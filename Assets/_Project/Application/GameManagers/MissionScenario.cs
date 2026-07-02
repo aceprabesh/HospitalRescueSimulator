@@ -19,7 +19,7 @@ namespace HospitalRescue.Application.GameManagers
         public Sprite missionImage;
         
         [Header("Objectives")]
-        public Objective[] objectives;
+        public ObjectiveData[] objectives;
         
         [Header("Settings")]
         public int baseScore = 1000;
@@ -91,7 +91,7 @@ namespace HospitalRescue.Application.GameManagers
     }
     
     [System.Serializable]
-    public class Objective
+    public class ObjectiveData
     {
         public string objectiveId;
         public string description;

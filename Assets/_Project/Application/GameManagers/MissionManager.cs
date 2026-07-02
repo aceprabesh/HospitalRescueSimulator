@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using HospitalRescue.Application.Controllers;
+using HospitalRescue.Domain.Entities;
 
 namespace HospitalRescue.Application.GameManagers
 {
