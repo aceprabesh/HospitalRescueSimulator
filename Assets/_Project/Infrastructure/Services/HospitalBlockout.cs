@@ -60,7 +60,7 @@ namespace HospitalRescue.Infrastructure.Services
             while (transform.childCount > 0)
             {
                 #if UNITY_EDITOR
-                if (!Application.isPlaying)
+                if (!UnityEngine.Application.isPlaying)
                     DestroyImmediate(transform.GetChild(0).gameObject);
                 else
                     Destroy(transform.GetChild(0).gameObject);
@@ -104,7 +104,7 @@ namespace HospitalRescue.Infrastructure.Services
             
             // Remove collider for performance in blockout
             #if UNITY_EDITOR
-            if (!Application.isPlaying)
+            if (!UnityEngine.Application.isPlaying)
                 DestroyImmediate(floor.GetComponent<Collider>());
             else
                 Destroy(floor.GetComponent<Collider>());
@@ -121,7 +121,7 @@ namespace HospitalRescue.Infrastructure.Services
             ceiling.GetComponent<Renderer>().material = ceilingMaterial;
             
             #if UNITY_EDITOR
-            if (!Application.isPlaying)
+            if (!UnityEngine.Application.isPlaying)
                 DestroyImmediate(ceiling.GetComponent<Collider>());
             else
                 Destroy(ceiling.GetComponent<Collider>());
@@ -211,7 +211,7 @@ namespace HospitalRescue.Infrastructure.Services
                 #if UNITY_EDITOR
                 foreach (var obj in new[] { wallLeft, wallRight, wallTop })
                 {
-                    if (!Application.isPlaying)
+                    if (!UnityEngine.Application.isPlaying)
                         DestroyImmediate(obj.GetComponent<Collider>());
                     else
                         Destroy(obj.GetComponent<Collider>());
@@ -228,7 +228,7 @@ namespace HospitalRescue.Infrastructure.Services
                 wall.GetComponent<Renderer>().material = wallMaterial;
                 
                 #if UNITY_EDITOR
-                if (!Application.isPlaying)
+                if (!UnityEngine.Application.isPlaying)
                     DestroyImmediate(wall.GetComponent<Collider>());
                 else
                     Destroy(wall.GetComponent<Collider>());
@@ -260,7 +260,7 @@ namespace HospitalRescue.Infrastructure.Services
             #if UNITY_EDITOR
             foreach (var obj in doorFrame.GetComponentsInChildren<Renderer>())
             {
-                if (!Application.isPlaying)
+                if (!UnityEngine.Application.isPlaying)
                     DestroyImmediate(obj.GetComponent<Collider>());
                 else
                     Destroy(obj.GetComponent<Collider>());
@@ -284,7 +284,7 @@ namespace HospitalRescue.Infrastructure.Services
             floor.GetComponent<Renderer>().material = floorMaterial;
             
             #if UNITY_EDITOR
-            if (!Application.isPlaying)
+            if (!UnityEngine.Application.isPlaying)
                 DestroyImmediate(floor.GetComponent<Collider>());
             else
                 Destroy(floor.GetComponent<Collider>());

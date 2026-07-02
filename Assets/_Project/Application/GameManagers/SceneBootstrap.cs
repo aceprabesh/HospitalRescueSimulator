@@ -56,7 +56,7 @@ namespace HospitalRescue.Application.GameManagers
         
         private void EnsureSaveManagerExists()
         {
-            if (FindObjectOfType<SaveManager>() == null)
+            if (FindFirstObjectByType<SaveManager>() == null)
             {
                 GameObject sm = new GameObject("SaveManager");
                 sm.AddComponent<SaveManager>();

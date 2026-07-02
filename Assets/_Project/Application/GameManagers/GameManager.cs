@@ -51,7 +51,7 @@ namespace HospitalRescue.Application.GameManagers
         private void Initialize()
         {
             // Subscribe to events
-            Application.targetFrameRate = 60;
+            UnityEngine.Application.targetFrameRate = 60;
             QualitySettings.vSyncCount = 1;
             
             SetGameState(GameState.MainMenu);
