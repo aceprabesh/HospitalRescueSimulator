@@ -14,11 +14,11 @@ namespace HospitalRescue.Domain.ScriptableObjects
         public float crouchSpeed = 2.5f;
         public float jumpForce = 5f;
         public float gravity = -20f;
-        
+
         [Header("Interaction Settings")]
         public float interactionRange = 3f;
         public KeyCode interactionKey = KeyCode.E;
-        
+
         [Header("Game Settings")]
         public int maxLives = 3;
         public float gameTimeLimit = 600f;
