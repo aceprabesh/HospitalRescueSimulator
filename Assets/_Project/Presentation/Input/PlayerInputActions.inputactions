@@ -3,7 +3,7 @@
     "maps": [
         {
             "name": "Gameplay",
-            "id": "f4c76abc-1234-5678-9abc-def012345678",
+            "id": "a1b2c3d4-e5f6-4a5b-8c9d-e0f1a2b3c4d5",
             "actions": [
                 {
                     "name": "Move",
@@ -29,7 +29,8 @@
                     "id": "jump-action-id",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Sprint",
@@ -37,7 +38,8 @@
                     "id": "sprint-action-id",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Crouch",
@@ -45,7 +47,8 @@
                     "id": "crouch-action-id",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Interact",
@@ -53,7 +56,8 @@
                     "id": "interact-action-id",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Pause",
@@ -61,7 +65,8 @@
                     "id": "pause-action-id",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -144,8 +149,8 @@
                 },
                 {
                     "name": "",
-                    "id": "shift-key-id",
-                    "path": "<Keyboard>/shift",
+                    "id": "left-shift-id",
+                    "path": "<Keyboard>/leftShift",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
@@ -155,8 +160,8 @@
                 },
                 {
                     "name": "",
-                    "id": "ctrl-key-id",
-                    "path": "<Keyboard>/ctrl",
+                    "id": "c-key-id",
+                    "path": "<Keyboard>/c",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
@@ -192,7 +197,7 @@
     "controlSchemes": [
         {
             "name": "Keyboard&Mouse",
-            "bindingGroupColor": "#65CFD766",
+            "bindingGroup": "Keyboard&Mouse",
             "devices": [
                 {
                     "devicePath": "<Keyboard>",
