@@ -13,7 +13,7 @@ namespace HospitalRescue.Application.Controllers.Player
     {
         [Header("References")]
         [SerializeField] private GameSettings gameSettings;
-        [SerializeField] private Camera interactionCamera;
+        [SerializeField] public Camera interactionCamera;
         
         [Header("Interaction Settings")]
         [SerializeField] private float interactionRange = 3f;

@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using HospitalRescue.Application.Controllers.Player;
+using HospitalRescue.Application.GameManagers;
 
 namespace HospitalRescue.Application.Presentation.Input
 {

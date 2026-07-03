@@ -48,7 +48,7 @@ namespace HospitalRescue.Application.Presentation.UI.Components
         private void Update()
         {
             // Toggle inventory with Tab key
-            if (Input.GetKeyDown(KeyCode.Tab))
+            if (UnityEngine.Input.GetKeyDown(KeyCode.Tab))
             {
                 ToggleInventory();
             }
