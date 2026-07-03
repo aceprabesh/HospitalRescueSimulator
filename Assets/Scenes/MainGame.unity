@@ -163,13 +163,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 567823104}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6f1c5e4f8f6e4a2e8f1c5e4f8f6e4a2, type: 3}
+  m_Script: {fileID: 11500000, guid: d5c873c2a56684b0fa2b1fd327e7614c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameSettings: {fileID: 0}
-  playerSpawnPoint: {fileID: 0}
-  playerPrefab: {fileID: 0}
-  uiPrefab: {fileID: 0}
+  gameSettings: {fileID: 11400000, guid: 481439030a15c422ab653206570b3507, type: 2}
+  playerSpawnPoint: {fileID: 987654322}
+  playerPrefab: {fileID: 100000, guid: a7c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5, type: 1}
+  uiPrefab: {fileID: 100000, guid: b8d4e5f6a7b1c2d3e4f5a6b7c8d9e0f1, type: 1}
   autoCreateManagers: 1
 --- !u!114 &567823107
 MonoBehaviour:
@@ -180,7 +180,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 567823104}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4, type: 3}
+  m_Script: {fileID: 11500000, guid: d6d5b92ade004414eb3d2e454c44cec4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   roomsX: 3
@@ -191,9 +191,9 @@ MonoBehaviour:
   wallThickness: 0.2
   doorWidth: 1.2
   doorHeight: 2.2
-  floorMaterial: {fileID: 0}
-  wallMaterial: {fileID: 0}
-  ceilingMaterial: {fileID: 0}
+  floorMaterial: {fileID: 2100000, guid: c9e5f6a7b8c2d3e4f5a6b7c8d9e0f1a2, type: 3}
+  wallMaterial: {fileID: 2100000, guid: d0f6a7b8c9d3e4f5a6b7c8d9e0f1a2b3, type: 3}
+  ceilingMaterial: {fileID: 2100000, guid: e1a7b8c9d0e4f5a6b7c8d9e0f1a2b3c4, type: 3}
 --- !u!1 &1234567890
 GameObject:
   m_ObjectHideFlags: 0

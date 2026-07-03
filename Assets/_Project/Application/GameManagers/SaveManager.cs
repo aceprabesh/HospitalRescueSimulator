@@ -80,7 +80,7 @@ namespace HospitalRescue.Application.GameManagers
         {
             if (string.IsNullOrEmpty(saveDirectory))
             {
-                saveDirectory = Path.Combine(Application.persistentDataPath, SAVE_FOLDER);
+                saveDirectory = Path.Combine(UnityEngine.Application.persistentDataPath, SAVE_FOLDER);
             }
             return Path.Combine(saveDirectory, saveSlot);
         }
