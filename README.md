@@ -1,36 +1,83 @@
-# Hospital Rescue Simulator
+# Gamified Hospital Rescue System
 
-A premium 3D first-person medical rescue simulation game built with Unity 6.
+A 3D first-person hospital rescue simulation game built with Unity.
 
 ## Project Overview
 
+**Project Title:** Gamified Hospital Rescue System
 **Genre:** 3D First-Person Medical Rescue Simulation
-**Engine:** Unity 6000.0 (URP)
-**Platform:** PC (Steam)
-**Target:** Mid-range gaming laptop, 60+ FPS
+**Engine:** Unity (URP)
+**Platform:** PC
+**Repository:** HospitalRescueSimulator-GitWork
 
-## Development Phases
+## Project Purpose
 
-### Phase 1: Project Foundation (Current)
-- [x] Unity project structure
-- [x] URP configuration
-- [x] Player controller system
-- [x] Interaction system
-- [x] Hospital blockout generator
-- [x] Save/Load framework
-- [x] Placeholder UI
+This project serves as a coursework submission demonstrating a playable 3D game built in Unity. The game simulates a hospital rescue scenario where the player must navigate a hospital environment, locate patients, assess their symptoms, and apply the correct treatment to stabilize them before time runs out.
 
-### Phase 2: Core Gameplay
-- Detailed hospital models
-- Inventory system
-- Patient system
-- Emergency scenarios
-- NPC AI
+## Main Objective
 
-### Phase 3: Advanced Systems
-- Full story implementation
-- Audio integration
-- Performance optimization
+The player must stabilize **5 patients** within the hospital by:
+1. Approaching a patient (within 2.5m)
+2. Pressing **E** to open the assessment UI
+3. Reading the patient's symptoms
+4. Selecting the correct treatment from three options
+5. Completing treatment before the mission timer expires
+
+Mission succeeds when all 5 patients are stabilized. Mission fails if the timer runs out.
+
+## Gameplay Flow
+
+1. Player spawns in the hospital environment
+2. Locate a patient (interaction prompt appears when close)
+3. Press **E** to open assessment panel
+4. Review symptoms and choose the best treatment from 3 options
+5. Correct treatment: patient stabilized, +100 score
+6. Wrong treatment: -25 penalty, can retry
+7. Repeat for all 5 patients
+8. Mission complete when all patients stabilized
+
+## Treatment Types
+
+- Bandage
+- Water
+- AED (Automated External Defibrillator)
+- Oxygen Mask
+- Glucose
+- First Aid Kit
+- Splint
+
+## Project Structure
+
+```
+Assets/
+├── HospitalHero/
+│   ├── Animations/     # Game animations
+│   ├── Art/            # Visual art assets
+│   ├── Audio/          # Sound assets
+│   ├── Materials/      # Hospital floor, wall, accent materials
+│   ├── Prefabs/        # Reusable game prefabs
+│   ├── Scenes/         # Main game scene (HospitalGame.unity)
+│   ├── Scripts/        # Core gameplay scripts
+│   └── UI/             # User interface elements
+├── PolyPeople_Hospital_Free/  # Hospital staff character assets
+├── StarterAssets/             # Unity Starter Assets (First Person)
+├── Floreswa/                   # General material assets
+└── Furniture/                  # Hospital furniture assets
+```
+
+## Core Scripts
+
+| Script | Purpose |
+|--------|---------|
+| `MissionManager` | Tracks patient progress, total patients (5), triggers win/lose |
+| `PatientInteractable` | Handles player proximity detection and E-key interaction |
+| `PatientTreatment` | Manages treatment choices, correct/wrong feedback, scoring |
+| `AssessmentUIController` | Displays patient symptoms and treatment options |
+| `ScoreManager` | Tracks and updates score (+100 correct, -25 wrong) |
+| `GameTimer` | Countdown timer, triggers mission failed on expiry |
+| `PauseMenu` | In-game pause functionality |
+| `MissionCompleteUI` | Shown when all 5 patients stabilized |
+| `MissionFailedUI` | Shown when timer expires before completion |
 
 ## Controls
 
@@ -38,33 +85,38 @@ A premium 3D first-person medical rescue simulation game built with Unity 6.
 |--------|-----|
 | Move | WASD |
 | Look | Mouse |
-| Sprint | Shift |
-| Crouch | Ctrl |
-| Jump | Space |
 | Interact | E |
 | Pause | Escape |
 
-## Architecture
+*Note: Sprint, crouch, and jump controls may exist but require manual verification in-play.*
 
-```
-Assets/_Project/
-├── Application/     # Controllers, GameManagers, UseCases
-├── Domain/          # Entities, Interfaces, ScriptableObjects
-├── Infrastructure/  # Persistence, Audio, Services
-└── Presentation/    # UI, Cameras, Input, VFX
-```
+## Scoring
+
+- Correct treatment: **+100 points**
+- Wrong treatment: **-25 points**
+- Final score displayed at mission end
 
 ## Getting Started
 
 1. Open Unity Hub
-2. Click "Open" and select the `HospitalRescueSimulator` folder
-3. Wait for package import
-4. Open the bootstrap scene and press Play
+2. Open project: `HospitalRescueSimulator-GitWork`
+3. Wait for package import and Library regeneration
+4. Open scene: `Assets/HospitalHero/Scenes/HospitalGame.unity`
+5. Press Play to start the game
 
-## Documentation
+## Development Status
 
-See `SPEC.md` for complete technical specification.
+- [x] Hospital environment with floor, walls, corridors
+- [x] Patient interaction system (E key, proximity-based)
+- [x] Assessment UI with symptom display
+- [x] Treatment selection with 3 options
+- [x] Scoring system (correct/wrong feedback)
+- [x] Mission tracking (5 patients to stabilize)
+- [x] Mission complete UI
+- [x] Mission failed UI (timer expiry)
+- [x] Pause menu
+- [x] Visual environment polish (materials, lighting)
 
 ## License
 
-Proprietary - All rights reserved
+Proprietary — All rights reserved
