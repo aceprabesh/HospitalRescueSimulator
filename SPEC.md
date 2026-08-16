@@ -1,383 +1,66 @@
-# Hospital Rescue Simulator — Technical Specification
+# Hospital Rescue Simulator — Spec
 
-## Phase 1: Project Foundation
+## What it is
 
----
+A first-person 3D game made in Unity for coursework. You play as someone
+walking around a hospital, finding patients, and treating them correctly
+before the clock runs out.
 
-## 1. Project Overview
+Engine: Unity (URP)
+Platform: PC, built for a normal laptop, nothing fancy required.
 
-**Project Name:** Hospital Rescue Simulator
-**Engine:** Unity 6 (6000.0.58f2) — URP (Universal Render Pipeline)
-**Genre:** 3D First-Person Medical Rescue Simulation
-**Platform Target:** PC (Steam), Mid-range gaming laptop optimized
-**Core Loop:** Respond to hospital emergencies, stabilize patients, make critical decisions, save lives
+## The core loop
 
----
+1. Walk around the hospital and find a patient.
+2. Get close enough (about 2.5m) and an interaction prompt shows up.
+3. Press E to open the assessment screen.
+4. Read the patient's symptoms.
+5. Pick one of three treatment options.
+6. Correct choice = patient stabilized, +100 score. Wrong choice = -25,
+   try again.
 
-## 2. Visual Direction
+Do that for all 5 patients before the timer runs out and you win. If the
+timer hits zero first, you fail the mission.
 
-### Art Style
-- **Reference Games:** Ready or Not, Phasmophobia (environment), The Mortuary Assistant (lighting)
-- **Style:** Realistic, dark, atmospheric hospital environment
-- **Rendering:** Physically Based Rendering (PBR), URP
-- **Lighting:** Cinematic, high-contrast, volumetric lighting
-- **No:** Cartoon graphics, low-poly, voxel art
+## Treatments
 
-### Color Palette
-| Role | Color | Hex |
-|------|-------|-----|
-| Primary Dark | Hospital Charcoal | `#1A1D21` |
-| Secondary | Steel Blue | `#2C3E50` |
-| Accent | Medical Blue | `#00D4FF` |
-| Alert/Error | Critical Red | `#FF3B3B` |
-| Success | Vital Green | `#00FF88` |
-| Warning | Amber | `#FFB800` |
-| UI Background | Deep Navy | `#0D1117` |
-| Text Primary | Clean White | `#FFFFFF` |
-| Text Secondary | Muted Gray | `#8B9298` |
+Bandage, Water, AED, Oxygen Mask, Glucose, First Aid Kit, Splint — the
+patient's symptoms decide which one is actually correct.
 
----
+## Controls
 
-## 3. Architecture
+- WASD to move
+- Mouse to look
+- E to interact
+- Escape to pause
 
-### 3.1 Clean Architecture Layers
+## Scripts (roughly what each one does)
 
-```
-┌─────────────────────────────────────────────────────────┐
-│                    Presentation Layer                    │
-│  (MonoBehaviours, UI, Controllers, Cameras, Input)     │
-├─────────────────────────────────────────────────────────┤
-│                    Application Layer                     │
-│  (Use Cases, Game Managers, State Machines, Events)     │
-├─────────────────────────────────────────────────────────┤
-│                     Domain Layer                         │
-│  (Entities, Value Objects, Interfaces, Game Data SO)   │
-├─────────────────────────────────────────────────────────┤
-│                  Infrastructure Layer                    │
-│  (Save System, Addressables, Audio, Unity Services)    │
-└─────────────────────────────────────────────────────────┘
-```
+- `MissionManager` — keeps count of how many patients are stabilized,
+  decides when the mission is won or lost
+- `PatientInteractable` — detects when the player is close enough to a
+  patient and listens for the E key
+- `PatientTreatment` — handles the treatment choice and whether it was
+  right or wrong
+- `AssessmentUIController` — shows the symptoms and the three treatment
+  buttons
+- `ScoreManager` — adds/subtracts points
+- `GameTimer` — counts down, fails the mission if it hits zero
+- `PauseMenu`, `MissionCompleteUI`, `MissionFailedUI` — the obvious ones
 
-### 3.2 Unity Project Structure
+## What actually got built vs. the original plan
 
-```
-HospitalRescueSimulator/
-├── Assets/
-│   ├── _Project/
-│   │   ├── Application/
-│   │   │   ├── Controllers/
-│   │   │   ├── GameManagers/
-│   │   │   ├── UseCases/
-│   │   │   └── StateMachines/
-│   │   ├── Domain/
-│   │   │   ├── Entities/
-│   │   │   ├── ValueObjects/
-│   │   │   ├── Interfaces/
-│   │   │   └── ScriptableObjects/
-│   │   ├── Infrastructure/
-│   │   │   ├── Persistence/
-│   │   │   ├── Audio/
-│   │   │   └── Services/
-│   │   └── Presentation/
-│   │       ├── UI/
-│   │       │   ├── Screens/
-│   │       │   │   ├── HUD/
-│   │       │   │   ├── PauseMenu/
-│   │       │   │   ├── GameOver/
-│   │       │   │   └── MainMenu/
-│   │       │   ├── Components/
-│   │       │   │   ├── HealthMonitor/
-│   │       │   │   ├── VitalsDisplay/
-│   │       │   │   ├── Timer/
-│   │       │   │   ├── Objectives/
-│   │       │   │   └── Inventory/
-│   │       │   └── Styles/
-│   │       ├── Cameras/
-│   │       ├── Input/
-│   │       └── VisualEffects/
-│   ├── Art/
-│   │   ├── Models/
-│   │   │   ├── Characters/
-│   │   │   ├── Props/
-│   │   │   ├── Furniture/
-│   │   │   ├── MedicalEquipment/
-│   │   │   └── Architecture/
-│   │   ├── Textures/
-│   │   ├── Materials/
-│   │   ├── Shaders/
-│   │   └── Animations/
-│   ├── Audio/
-│   │   ├── Music/
-│   │   ├── SFX/
-│   │   └── Voice/
-│   ├── Addressables/
-│   │   ├── Labels/
-│   │   └── Groups/
-│   └── Resources/
-│
-├── ProjectSettings/
-├── Packages/
-└── UserSettings/
-```
+Early on this had a much bigger plan attached to it — modular architecture
+layers, a full asset pipeline, third-party audio middleware, that kind of
+thing. Most of that got dropped once real development started, because it
+was more than a coursework-sized project needed. What's in the repo now is
+the simpler version above: one hospital scene, 5 patients, one interaction
+loop, done properly rather than half-building a bigger system.
 
----
+## Known limitations
 
-## 4. Phase 1 Deliverables
-
-### 4.1 Unity Project Configuration
-- [ ] Create Unity project with URP template
-- [ ] Configure URP settings (shadows, post-processing)
-- [ ] Set up editor layout and preferences
-- [ ] Configure color space (Linear for PC)
-- [ ] Set up Player settings (product name, icon, etc.)
-
-### 4.2 Git Configuration
-- [ ] Initialize Git repository
-- [ ] Create .gitignore (Unity template)
-- [ ] Create initial commit
-- [ ] Set up .gitattributes for large files
-
-### 4.3 Coding Standards
-- [ ] Namespace conventions: `HospitalRescue.{Layer}.{Feature}`
-- [ ] Folder structure enforcement
-- [ ] MonoBehaviour lifecycle guidelines
-- [ ] Serialization rules
-- [ ] Event system patterns
-
-### 4.4 Player Controller
-- [ ] First-person character controller
-- [ ] WASD + Mouse look
-- [ ] Sprint system
-- [ ] Crouch system
-- [ ] Jump (single jump, realistic)
-- [ ] Head bob (subtle)
-- [ ] Footstep sounds
-- [ ] Collision detection
-
-### 4.5 Camera System
-- [ ] First-person camera
-- [ ] Mouse look (vertical clamped)
-- [ ] FOV settings
-- [ ] Camera collision (clip prevention)
-- [ ] Weapon/viewmodel idle sway
-
-### 4.6 Interaction System
-- [ ] Raycast-based interaction
-- [ ] Interaction prompt UI
-- [ ] Interactable interface
-- [ ] Interaction range configuration
-- [ ] Hold-to-interact support
-
-### 4.7 Hospital Blockout
-- [ ] Prototype room layouts
-- [ ] Basic geometry (no final assets)
-- [ ] Room connectivity
-- [ ] Basic lighting
-- [ ] Navigation mesh (NavMeshSurface)
-
-### 4.8 Lighting Setup
-- [ ] URP lighting configuration
-- [ ] Real-time lighting basics
-- [ ] Ambient lighting
-- [ ] Basic Volumetrics
-
-### 4.9 Save/Load Framework
-- [ ] SaveData structure
-- [ ] JsonSerialization helper
-- [ ] PlayerPrefs wrapper (Phase 1 simple)
-- [ ] Auto-save checkpoints
-
-### 4.10 Placeholder UI
-- [ ] HUD canvas setup
-- [ ] Health display placeholder
-- [ ] Crosshair
-- [ ] Interaction prompt
-- [ ] Pause menu (basic)
-- [ ] Debug console (dev)
-
----
-
-## 5. Technical Specifications
-
-### 5.1 Target Performance
-| Metric | Target | Minimum |
-|--------|--------|---------|
-| FPS | 60+ | 45 |
-| GPU | Mid-range GTX 1060 / RTX 3050 | Integrated |
-| RAM | 8GB | 6GB |
-| VRAM | 4GB | 2GB |
-| Build Size | < 10GB | - |
-
-### 5.2 Quality Settings
-- **Ultra:** Shadows on, Volumetrics on, 2x Texture scale
-- **High:** Shadows on, Volumetrics medium
-- **Medium:** Soft shadows, No volumetrics
-- **Low:** No shadows, No volumetrics, Simplified materials
-
-### 5.3 Optimization Targets
-- Occlusion culling enabled
-- LOD system for complex meshes
-- Baked lighting for static elements
-- GPU Instancing for props
-- Texture atlases for props
-- Object pooling for frequently spawned objects
-
----
-
-## 6. Dependencies & Packages
-
-### 6.1 Unity Registry
-| Package | Version | Purpose |
-|---------|---------|---------|
-| URP | 6000.0+ | Rendering pipeline |
-| Input System | 1.7.0+ | New input handling |
-| NavMesh | 6000.0+ | NPC pathfinding |
-| Timeline | 6000.0+ | Cinematics |
-| Animation Rigging | 6000.0+ | Character animations |
-| ProBuilder | 6.0+ | Prototype level design |
-| Addressables | 1.21+ | Asset management |
-| Visual Studio Editor | 6000.0+ | IDE integration |
-
-### 6.2 Third-Party (TBD Phase 2-3)
-- Cinemachine (camera system)
-- FMOD (audio engine)
-- Odin Inspector (debug tools)
-- Quest Machine (NPC dialogue)
-
----
-
-## 7. Phase 1 Script Architecture
-
-### 7.1 Core Scripts
-
-```
-IPlayerController
-├── PlayerController : MonoBehaviour, IPlayerController
-├── PlayerInput : MonoBehaviour
-└── PlayerCamera : MonoBehaviour
-
-IInteractionSystem
-├── InteractionManager : MonoBehaviour, IInteractionSystem
-├── Interactable : MonoBehaviour, IInteractable
-└── InteractionPromptUI : MonoBehaviour
-
-IGameManager
-├── GameManager : Singleton MonoBehaviour
-├── GameStateMachine : StateMachine
-├── PauseManager : MonoBehaviour
-└── SaveManager : MonoBehaviour, ISaveManager
-```
-
-### 7.2 Folder Structure for Scripts
-```
-Assets/_Project/Application/Controllers/Player/
-├── PlayerController.cs
-├── PlayerInput.cs
-├── PlayerCamera.cs
-└── PlayerStateMachine.cs
-
-Assets/_Project/Application/GameManagers/
-├── GameManager.cs
-├── GameStateMachine.cs
-├── PauseManager.cs
-├── SaveManager.cs
-├── AudioManager.cs
-└── UIManager.cs
-
-Assets/_Project/Domain/Interfaces/
-├── IPlayerController.cs
-├── IInteractionSystem.cs
-├── IGameManager.cs
-├── ISaveManager.cs
-└── IAudioManager.cs
-
-Assets/_Project/Domain/Entities/
-├── PlayerData.cs
-├── PatientData.cs
-└── MissionData.cs
-
-Assets/_Project/Domain/ScriptableObjects/
-├── GameSettings.cs
-├── PlayerSettings.cs
-├── InputSettings.cs
-└── InteractionSettings.cs
-```
-
----
-
-## 8. Blender Asset Pipeline (Phase 2+)
-
-### 8.1 Naming Conventions
-- Models: `{Category}_{SubCategory}_{Name}_{Variant}.fbx`
-- Textures: `{ModelName}_{Channel}_{Resolution}.png`
-- Materials: `{ModelName}_Mat`
-- Prefabs: `{ModelName}_Pf`
-
-### 8.2 Hospital Modular Kit (Phase 2)
-| Component | Dimensions | Poly Budget | Purpose |
-|-----------|-------------|-------------|---------|
-| Wall_Straight_4m | 4m x 3m x 0.2m | 64 tris | Standard wall |
-| Wall_Corner | 4m x 3m x 0.2m | 128 tris | Corner connections |
-| Floor_Tile_2m | 2m x 2m x 0.05m | 8 tris | Floor tiles |
-| Door_Single | 1m x 2.1m x 0.1m | 256 tris | Doorways |
-| Door_Double | 2m x 2.1m x 0.1m | 384 tris | Main corridors |
-
----
-
-## 9. UI/UX Design System
-
-### 9.1 Typography
-| Element | Font | Size | Weight |
-|---------|------|------|--------|
-| HUD Title | Inter | 24px | Bold |
-| HUD Body | Inter | 16px | Regular |
-| Timer | JetBrains Mono | 32px | Bold |
-| Vitals | JetBrains Mono | 20px | Medium |
-| Button Text | Inter | 14px | SemiBold |
-
-### 9.2 Spacing System (8pt Grid)
-- `xs`: 4px
-- `sm`: 8px
-- `md`: 16px
-- `lg`: 24px
-- `xl`: 32px
-- `xxl`: 48px
-
-### 9.3 Component States
-| State | Background | Border | Text |
-|-------|------------|--------|------|
-| Default | #1A1D21 | #2C3E50 | #FFFFFF |
-| Hover | #2C3E50 | #00D4FF | #FFFFFF |
-| Active | #00D4FF | #00D4FF | #0D1117 |
-| Disabled | #1A1D21 | #1A1D21 | #4A4A4A |
-
----
-
-## 10. Risk Assessment
-
-| Risk | Likelihood | Impact | Mitigation |
-|------|-------------|--------|------------|
-| Performance issues | Medium | High | Early profiling, LOD system, occlusion |
-| Scope creep | High | High | Strict phase gates, MVP focus |
-| Asset pipeline bottlenecks | Medium | Medium | Clear Blender workflow, import automation |
-| Save system complexity | Low | High | Simple JSON initially, expand later |
-
----
-
-## 11. Next Steps (Upon Approval)
-
-1. Initialize Unity project with URP
-2. Configure Git repository
-3. Set up folder structure
-4. Implement Player Controller
-5. Implement Interaction System
-6. Build hospital blockout
-7. Add placeholder UI
-8. Integrate save/load framework
-9. **Deliverable:** Playable prototype
-
----
-
-*Document Version: 1.0*
-*Last Updated: 2026-07-02*
-*Phase: 1 - Foundation*
+- Sprint/crouch/jump inputs may be wired up from the base Unity starter
+  assets but aren't guaranteed to be tuned or required for the mission
+- No save/load between sessions — each playthrough starts fresh
+- Visual polish (materials, lighting) was done in later passes and isn't
+  meant to look production-quality, just presentable for a demo
